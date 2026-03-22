@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Refresh your world with Pepsi. Explore our bold flavors, zero sugar options, and the latest in music and culture. Find Pepsi products near you.">
+    <meta name="keywords" content="Pepsi products, buy Pepsi near me, Pepsi flavors, Pepsi zero sugar">
+    <title>Pepsi | Refresh Your World</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- BRAND DESIGN SYSTEM & VARIABLES --- */
+        :root {
+            --pepsi-blue: #005CE6;
+            --pepsi-blue-dark: #003B99;
+            --pepsi-red: #C9002B;
+            --pepsi-white: #FFFFFF;
+            --text-dark: #121212;
+            --bg-light: #F8FAFC;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Dark Mode Variables */
+        body.dark-mode {
+            --pepsi-white: #121212;
+            --text-dark: #FFFFFF;
+            --bg-light: #1E1E1E;
+            --pepsi-blue: #3385FF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--pepsi-white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* --- TYPOGRAPHY & BUTTONS --- */
+        h1, h2, h3 { text-transform: uppercase; font-weight: 900; }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .btn-primary { background: var(--pepsi-blue); color: #FFF; }
+        .btn-primary:hover { background: var(--pepsi-blue-dark); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 92, 230, 0.3); }
+        
+        .btn-accent { background: var(--pepsi-red); color: #FFF; }
+        .btn-accent:hover { background: #A30023; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(201, 0, 43, 0.3); }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        nav.scrolled {
+            background: var(--pepsi-white);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 15px 5%;
+        }
+
+        .logo { font-size: 1.8rem; font-weight: 900; color: var(--pepsi-blue); letter-spacing: -1px; }
+        body.dark-mode .logo { color: #FFF; }
+
+        .nav-links a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover { color: var(--pepsi-blue); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5%;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #e0e7ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        body.dark-mode .hero { background: linear-gradient(135deg, #121212 0%, #001f4d 100%); }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            line-height: 0.9;
+            margin-bottom: 20px;
+            color: var(--pepsi-blue);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Mock CSS Product Can */
+        .mock-can {
+            width: 200px;
+            height: 400px;
+            background: linear-gradient(to bottom, var(--pepsi-blue) 40%, var(--pepsi-white) 40%, var(--pepsi-white) 60%, var(--pepsi-red) 60%);
+            border-radius: 20px;
+            box-shadow: -20px 20px 50px rgba(0,0,0,0.2), inset -10px -10px 20px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pepsi-white);
+            font-weight: 900;
+            font-size: 2rem;
+            transform: rotate(15deg);
+        }
+
+        /* --- PRODUCT SHOWCASE --- */
+        .products {
+            padding: 100px 5%;
+            background: var(--pepsi-white);
+            text-align: center;
+        }
+
+        .products h2 { font-size: 3rem; margin-bottom: 50px; color: var(--text-dark); }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: var(--bg-light);
+            padding: 40px 20px;
+            border-radius: 20px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .product-card h3 { font-size: 1.5rem; margin: 20px 0 10px; color: var(--pepsi-blue); }
+        .product-card p { margin-bottom: 20px; color: #666; }
+
+        /* --- CULTURE SECTION --- */
+        .culture {
+            background: var(--text-dark);
+            color: var(--pepsi-white);
+            padding: 100px 5%;
+            text-align: center;
+        }
+
+        .culture h2 { font-size: 3.5rem; color: var(--pepsi-white); margin-bottom: 20px; }
+        .culture p { max-width: 600px; margin: 0 auto 40px auto; font-size: 1.1rem; }
+
+        /* --- ANIMATIONS --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 100px; }
+            .hero h1 { font-size: 3.5rem; }
+            .hero-visual { margin-top: 50px; }
+            .nav-links { display: none; /* In production, add a hamburger menu here */ }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="logo">PEPSI</div>
+        <div class="nav-links">
+            <a href="#products">Products</a>
+            <a href="#culture">Culture</a>
+            <a href="#about">About</a>
+            <a href="#" id="themeToggle" title="Toggle Dark Mode">🌙</a>
+        </div>
+        <a href="#locator" class="btn btn-primary">Find Near You</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Refresh<br>Your World</h1>
+            <p>Unapologetically bold. Unmistakably refreshing. Grab the taste that fuels your next move.</p>
+            <a href="#products" class="btn btn-primary" style="margin-right: 15px;">Buy Now</a>
+            <a href="#locator" class="btn btn-accent">Store Locator</a>
+        </div>
+        <div class="hero-visual">
+            <div class="mock-can">PEPSI</div>
+        </div>
+    </section>
+
+    <section class="products" id="products">
+        <h2>Choose Your Vibe</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <h3 style="color: var(--pepsi-blue);">Original</h3>
+                <p>The bold, refreshing cola born in New Bern, NC. A classic for a reason.</p>
+                <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="product-card">
+                <h3 style="color: var(--text-dark);">Zero Sugar</h3>
+                <p>All the bold taste you love. Zero sugar. Zero compromise.</p>
+                <a href="#" class="btn btn-primary" style="background: var(--text-dark);">Learn More</a>
+            </div>
+            <div class="product-card">
+                <h3 style="color: var(--pepsi-red);">Wild Cherry</h3>
+                <p>A burst of cherry flavor combined with the classic Pepsi taste.</p>
+                <a href="#" class="btn btn-accent">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="culture" id="culture">
+        <h2>Live For Now</h2>
+        <p>From stadium anthems to street style, we're bringing you closer to the music, sports, and culture you love.</p>
+        <a href="#" class="btn btn-primary" style="background: var(--pepsi-white); color: var(--text-dark);">See Campaigns</a>
+    </section>
+
+    <script>
+        // Sticky Navigation behavior
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Dark Mode Toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.body.classList.toggle('dark-mode');
+            themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        });
+    </script>
+</body>
+</html>
